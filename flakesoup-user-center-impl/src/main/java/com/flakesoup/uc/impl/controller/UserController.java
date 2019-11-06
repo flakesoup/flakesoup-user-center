@@ -2,7 +2,7 @@ package com.flakesoup.uc.impl.controller;
 
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.feign.UserCenterApi;
+import com.flakesoup.uc.api.UserCenterApi;
 import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

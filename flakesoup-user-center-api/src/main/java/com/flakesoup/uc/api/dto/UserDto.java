@@ -1,6 +1,5 @@
 package com.flakesoup.uc.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -30,12 +29,6 @@ public class UserDto implements Serializable {
 	 * 密码
 	 */
 	private String password;
-
-	/**
-	 * 随机盐
-	 */
-	@JsonIgnore
-	private String salt;
 
 	/**
 	 * 创建时间

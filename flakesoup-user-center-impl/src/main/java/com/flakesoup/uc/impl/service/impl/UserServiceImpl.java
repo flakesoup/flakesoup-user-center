@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.entity.User;
+import com.flakesoup.uc.impl.entity.User;
 import com.flakesoup.uc.impl.mapper.UserMapper;
 import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.flakesoup.uc.api.feign;
+package com.flakesoup.uc.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

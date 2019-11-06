@@ -1,4 +1,4 @@
-package com.flakesoup.uc.api.feign;
+package com.flakesoup.uc.api;
 
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;

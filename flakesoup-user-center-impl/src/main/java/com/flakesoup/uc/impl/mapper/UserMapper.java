@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.entity.User;
+import com.flakesoup.uc.impl.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 /**

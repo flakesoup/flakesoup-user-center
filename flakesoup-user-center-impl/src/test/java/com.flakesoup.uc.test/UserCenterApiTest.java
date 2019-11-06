@@ -3,7 +3,7 @@ package com.flakesoup.uc.test;
 
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.feign.UserCenterApi;
+import com.flakesoup.uc.api.UserCenterApi;
 import com.flakesoup.uc.impl.FlakeSoupUserCenterApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;

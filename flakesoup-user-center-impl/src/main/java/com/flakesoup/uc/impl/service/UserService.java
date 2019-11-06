@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.entity.User;
+import com.flakesoup.uc.impl.entity.User;
 
 
 public interface UserService extends IService<User> {
