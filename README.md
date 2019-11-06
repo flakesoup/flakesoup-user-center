@@ -17,3 +17,8 @@ user center based on SrpingCloud F
       KEY `user_idx_mobile` (`mobile`),
       KEY `user_idx_create_time` (`create_time`)
     ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
+
+
+# TODO
+
+* 用户相关接口分布式锁控制并发修改
