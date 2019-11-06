@@ -1,11 +1,11 @@
 package com.flakesoup.uc.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @FeignClient(contextId = "usersCenterApi", value = "flakesoup-user-center")
@@ -19,6 +19,10 @@ public interface UsersCenterApi {
 	 * @return 用户集合
 	 */
 	@GetMapping("/users/list")
-	R<IPage<UserDto>> getPageUsers(Page page, UserDto userDto);
+	R<IPage<UserDto>> getPageUsers(
+			@RequestParam(value="page", required=false, defaultValue="1") Integer page,
+			@RequestParam(value="size", required=false, defaultValue="10") Integer size,
+			UserDto userDto
+	);
 
 }

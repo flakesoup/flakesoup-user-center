@@ -21,12 +21,16 @@ public class UsersController implements UsersCenterApi {
 	/**
 	 * 分页查询用户
 	 *
-	 * @param page    参数集
+	 * @param current    页码
+	 * @param size   页条目数
 	 * @param userDto 查询参数列表
 	 * @return 用户集合
 	 */
 	@GetMapping("/list")
-	public R<IPage<UserDto>> getPageUsers(Page page, UserDto userDto) {
+	public R<IPage<UserDto>> getPageUsers(Integer current, Integer size, UserDto userDto) {
+		Page page = new Page();
+		page.setSize(size);
+		page.setCurrent(current);
 		return R.ok(userService.getPageUsers(page, userDto));
 	}
 
