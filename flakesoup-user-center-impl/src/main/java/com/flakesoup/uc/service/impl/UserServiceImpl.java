@@ -1,5 +1,7 @@
 package com.flakesoup.uc.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
@@ -31,5 +33,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		user.setPassword(ENCODER.encode(userDto.getPassword()));
 		baseMapper.insert(user);
 		return true;
+	}
+
+	@Override
+	public IPage getPageUsers(Page page, UserDto userDto) {
+		return baseMapper.getPageUsers(page, userDto);
 	}
 }

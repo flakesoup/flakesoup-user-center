@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(contextId = "userCenterApi", value = "flakesoup-user-center")
-public interface UserCenterApi {
+@FeignClient(contextId = "usersCenterApi", value = "flakesoup-user-center")
+public interface UsersCenterApi {
 	/**
 	 * 通过id查询用户
 	 *

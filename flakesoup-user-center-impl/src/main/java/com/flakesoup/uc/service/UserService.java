@@ -1,5 +1,7 @@
 package com.flakesoup.uc.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
@@ -7,15 +9,15 @@ import com.flakesoup.uc.api.entity.User;
 
 public interface UserService extends IService<User> {
 
-//
-//	/**
-//	 * 分页查询用户信息（含有角色信息）
-//	 *
-//	 * @param page    分页对象
-//	 * @param userDTO 参数列表
-//	 * @return
-//	 */
-//	IPage getUserWithRolePage(Page page, UserDTO userDTO);
+
+	/**
+	 * 分页查询用户信息（含有角色信息）
+	 *
+	 * @param page    分页对象
+	 * @param userDto 参数列表
+	 * @return
+	 */
+	IPage getPageUsers(Page page, UserDto userDto);
 //
 //	/**
 //	 * 删除用户

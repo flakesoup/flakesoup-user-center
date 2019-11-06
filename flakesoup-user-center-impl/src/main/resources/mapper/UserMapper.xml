@@ -41,4 +41,34 @@
 		WHERE
 		`user`.id = #{id}
 	</select>
+
+	<select id="getPageUsers" resultMap="baseResultMap">
+		SELECT
+		`user`.id,
+		`user`.name,
+		`user`.password,
+		`user`.salt,
+		`user`.mobile,
+		`user`.create_time,
+		`user`.update_time
+		FROM
+		`user`
+		<where>
+			<trim prefixOverrides="and">
+				<if test="query.name != null and query.name != ''">
+					and `user`.name LIKE CONCAT('%',#{query.name},'%')
+				</if>
+				<if test="query.mobile != null and query.mobile != ''">
+					and `user`.mobile LIKE CONCAT('%',#{query.mobile},'%')
+				</if>
+				<!--<if test="query.create_time_start != null and query.create_time_start != ''">-->
+					<!--and `user`.create_time >= #{query.create_time_start}-->
+				<!--</if>-->
+				<!--<if test="query.create_time_end != null and query.create_time_end != ''">-->
+					<!--and #{query.create_time_end} >= `user`.create_time-->
+				<!--</if>-->
+			</trim>
+		</where>
+		ORDER BY `user`.create_time DESC
+	</select>
 </mapper>
