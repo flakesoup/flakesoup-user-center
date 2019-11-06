@@ -4,7 +4,6 @@ package com.flakesoup.uc.test;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.feign.UserCenterApi;
-import com.flakesoup.uc.api.vo.UserVo;
 import com.flakesoup.uc.impl.FlakeSoupUserCenterApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,26 +21,26 @@ public class UserCenterApiTest {
 
     @Test
     public void testGetUserById(){
-        R<UserVo> r = userCenterApi.getUserById(10L);
+        R<UserDto> r = userCenterApi.getUserById(10L);
         System.out.println(r);
     }
 
     @Test
     public void testCreateUser(){
-        UserDto userDto = new UserDto();
+        com.flakesoup.uc.api.dto.UserDto userDto = new com.flakesoup.uc.api.dto.UserDto();
         userDto.setName("manson");
         userDto.setMobile("13466730687");
         userDto.setPassword("123456");
-        R<UserVo> r = userCenterApi.createUser(userDto);
+        R<UserDto> r = userCenterApi.createUser(userDto);
         System.out.println(r);
     }
 
     @Test
     public void testCheckUserPwd(){
-        UserDto userDto = new UserDto();
+        com.flakesoup.uc.api.dto.UserDto userDto = new com.flakesoup.uc.api.dto.UserDto();
         userDto.setId(28L);
         userDto.setPassword("123456");
-        R<UserVo> r = userCenterApi.checkUserPassword(userDto);
+        R<UserDto> r = userCenterApi.checkUserPassword(userDto);
         System.out.println(r);
     }
 }

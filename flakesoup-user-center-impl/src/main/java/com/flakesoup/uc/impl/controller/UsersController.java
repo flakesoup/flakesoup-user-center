@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.feign.UsersCenterApi;
-import com.flakesoup.uc.api.vo.UserVo;
 import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,7 @@ public class UsersController implements UsersCenterApi {
 	 * @return 用户集合
 	 */
 	@GetMapping("/list")
-	public R<IPage<UserVo>> getPageUsers(Page page, UserDto userDto) {
+	public R<IPage<UserDto>> getPageUsers(Page page, com.flakesoup.uc.api.dto.UserDto userDto) {
 		return R.ok(userService.getPageUsers(page, userDto));
 	}
 

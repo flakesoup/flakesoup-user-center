@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
-import com.flakesoup.uc.api.vo.UserVo;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * <p>
@@ -32,5 +29,4 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @return list
 	 */
 	IPage<User> getPageUsers(Page page, @Param("query") UserDto userDto);
-//	IPage<UserVo> getPageUsers(Page page, @Param("query") UserDto userDto);
 }

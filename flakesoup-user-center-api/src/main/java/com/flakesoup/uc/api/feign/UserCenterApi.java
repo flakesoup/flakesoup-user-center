@@ -2,7 +2,6 @@ package com.flakesoup.uc.api.feign;
 
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.vo.UserVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,7 @@ public interface UserCenterApi {
 	 * @return R
 	 */
 	@GetMapping("/user/{id}")
-	R<UserVo> getUserById(@PathVariable("id") Long id);
+	R<UserDto> getUserById(@PathVariable("id") Long id);
 
 	/**
 	 * 创建用户
@@ -28,7 +27,7 @@ public interface UserCenterApi {
 	 * @return 用户信息
 	 */
 	@PostMapping("/user")
-	R<UserVo> createUser(@RequestBody UserDto userDto);
+	R<UserDto> createUser(@RequestBody com.flakesoup.uc.api.dto.UserDto userDto);
 
 	/**
 	 * 用户登录
@@ -37,5 +36,5 @@ public interface UserCenterApi {
 	 * @return 用户信息
 	 */
 	@PostMapping("/user/check/pwd")
-	R<UserVo> checkUserPassword(@RequestBody UserDto userDto);
+	R<UserDto> checkUserPassword(@RequestBody com.flakesoup.uc.api.dto.UserDto userDto);
 }

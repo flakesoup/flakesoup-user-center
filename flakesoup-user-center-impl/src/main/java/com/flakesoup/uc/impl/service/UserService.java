@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
-import com.flakesoup.uc.api.vo.UserVo;
 
 
 public interface UserService extends IService<User> {
@@ -17,7 +16,7 @@ public interface UserService extends IService<User> {
 	 * @param userDto 参数列表
 	 * @return
 	 */
-	IPage<UserVo> getPageUsers(Page page, UserDto userDto);
+	IPage<UserDto> getPageUsers(Page page, com.flakesoup.uc.api.dto.UserDto userDto);
 
 //	/**
 //	 * 更新当前用户基本信息
@@ -41,7 +40,7 @@ public interface UserService extends IService<User> {
 	 * @param id 用户ID
 	 * @return 用户信息
 	 */
-	UserVo getUserById(Long id);
+	UserDto getUserById(Long id);
 
 	/**
 	 * 创建用户
@@ -49,7 +48,7 @@ public interface UserService extends IService<User> {
 	 * @param userDto DTO 对象
 	 * @return 用户信息
 	 */
-	UserVo createUser(UserDto userDto);
+	UserDto createUser(com.flakesoup.uc.api.dto.UserDto userDto);
 
 	/**
 	 * 验证用户密码用户
@@ -57,5 +56,5 @@ public interface UserService extends IService<User> {
 	 * @param userDto DTO 对象
 	 * @return 用户信息
 	 */
-	UserVo checkUserPassword(UserDto userDto);
+	UserDto checkUserPassword(com.flakesoup.uc.api.dto.UserDto userDto);
 }

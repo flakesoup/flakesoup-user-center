@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.feign.UsersCenterApi;
-import com.flakesoup.uc.api.vo.UserVo;
 import com.flakesoup.uc.impl.FlakeSoupUserCenterApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,8 +35,8 @@ public class UsersCenterApiTest {
         UserDto userDto = new UserDto();
 //        userDto.setName("manson");
 //        userDto.setMobile("13466730687");
-        R<IPage<UserVo>> r = usersCenterApi.getPageUsers(page, userDto);
-        IPage<UserVo> data = r.getData();
+        R<IPage<UserDto>> r = usersCenterApi.getPageUsers(page, userDto);
+        IPage<UserDto> data = r.getData();
         System.out.println(data.getCurrent());
         System.out.println(data.getPages());
         System.out.println(data.getTotal());
