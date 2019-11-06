@@ -1,18 +1,21 @@
-package com.flakesoup.uc.service.impl;
+package com.flakesoup.uc.impl.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
-import com.flakesoup.uc.mapper.UserMapper;
-import com.flakesoup.uc.service.UserService;
+import com.flakesoup.uc.api.vo.UserVo;
+import com.flakesoup.uc.impl.mapper.UserMapper;
+import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Slf4j
@@ -36,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	}
 
 	@Override
-	public IPage getPageUsers(Page page, UserDto userDto) {
+	public IPage<UserVo> getPageUsers(Page page, UserDto userDto) {
 		return baseMapper.getPageUsers(page, userDto);
 	}
 }

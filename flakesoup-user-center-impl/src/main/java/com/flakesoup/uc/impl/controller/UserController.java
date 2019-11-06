@@ -1,11 +1,11 @@
-package com.flakesoup.uc.controller;
+package com.flakesoup.uc.impl.controller;
 
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
 import com.flakesoup.uc.api.feign.UserCenterApi;
 import com.flakesoup.uc.api.vo.UserVo;
-import com.flakesoup.uc.service.UserService;
+import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;

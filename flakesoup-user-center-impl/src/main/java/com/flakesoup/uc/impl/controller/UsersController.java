@@ -1,14 +1,18 @@
-package com.flakesoup.uc.controller;
+package com.flakesoup.uc.impl.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.feign.UsersCenterApi;
-import com.flakesoup.uc.service.UserService;
+import com.flakesoup.uc.api.vo.UserVo;
+import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -25,7 +29,7 @@ public class UsersController implements UsersCenterApi {
 	 * @return 用户集合
 	 */
 	@GetMapping("/list")
-	public R getPageUsers(Page page, UserDto userDto) {
+	public R<IPage<UserVo>> getPageUsers(Page page, UserDto userDto) {
 		return R.ok(userService.getPageUsers(page, userDto));
 	}
 

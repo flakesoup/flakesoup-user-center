@@ -1,4 +1,4 @@
-package com.flakesoup.uc;
+package com.flakesoup.uc.impl;
 
 
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.flakesoup.uc.mapper;
+package com.flakesoup.uc.impl.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -31,5 +31,5 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @param userDto 查询参数
 	 * @return list
 	 */
-	IPage<List<UserVo>> getPageUsers(Page page, @Param("query") UserDto userDto);
+	IPage<UserVo> getPageUsers(Page page, @Param("query") UserDto userDto);
 }

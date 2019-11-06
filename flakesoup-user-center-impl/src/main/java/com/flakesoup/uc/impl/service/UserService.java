@@ -1,10 +1,13 @@
-package com.flakesoup.uc.service;
+package com.flakesoup.uc.impl.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
+import com.flakesoup.uc.api.vo.UserVo;
+
+import java.util.List;
 
 
 public interface UserService extends IService<User> {
@@ -16,7 +19,7 @@ public interface UserService extends IService<User> {
 	 * @param userDto 参数列表
 	 * @return
 	 */
-	IPage getPageUsers(Page page, UserDto userDto);
+	IPage<UserVo> getPageUsers(Page page, UserDto userDto);
 //
 //	/**
 //	 * 删除用户

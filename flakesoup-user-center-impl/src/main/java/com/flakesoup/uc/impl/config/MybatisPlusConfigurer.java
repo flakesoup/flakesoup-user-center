@@ -1,4 +1,4 @@
-package com.flakesoup.uc.config;
+package com.flakesoup.uc.impl.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.flakesoup.common.core.mybatis.DataScopeInterceptor;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@MapperScan("com.flakesoup.uc.mapper")
+@MapperScan("com.flakesoup.uc.impl.mapper")
 public class MybatisPlusConfigurer {
 	/**
 	 * 分页插件
