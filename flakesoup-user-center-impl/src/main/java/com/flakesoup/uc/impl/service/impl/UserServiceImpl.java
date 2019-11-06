@@ -25,21 +25,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
 	@Override
-	public User getUserById(Long id) {
-		return baseMapper.getUserById(id);
+	public UserVo getUserById(Long id) {
+		User user = baseMapper.getUserById(id);
+		return convertUserToVo(user);
 	}
 
 	@Override
-	public User createUser(UserDto userDto) {
+	public UserVo createUser(UserDto userDto) {
 		User user = new User();
 		BeanUtils.copyProperties(userDto, user);
 		user.setPassword(ENCODER.encode(userDto.getPassword()));
 		baseMapper.insert(user);
-		return user;
+		return convertUserToVo(user);
 	}
 
 	@Override
 	public IPage<UserVo> getPageUsers(Page page, UserDto userDto) {
-		return baseMapper.getPageUsers(page, userDto);
+		IPage<User> users = baseMapper.getPageUsers(page, userDto);
+		return convertListUserToVo(users);
+	}
+
+	@Override
+	public UserVo checkUserPassword(UserDto userDto) {
+		User user = baseMapper.getUserById(userDto.getId());
+		if (user != null) {
+			boolean res = ENCODER.matches(userDto.getPassword(), user.getPassword());
+			if (res) {
+				return convertUserToVo(user);
+			}
+		}
+		return null;
+	}
+
+	private UserVo convertUserToVo(User user) {
+		UserVo userVo = new UserVo();
+		BeanUtils.copyProperties(user, userVo);
+		return userVo;
+	}
+
+	private IPage<UserVo> convertListUserToVo(IPage<User> users) {
+		IPage<UserVo> userVos = new Page<>();
+		BeanUtils.copyProperties(users, userVos);
+		return userVos;
 	}
 }

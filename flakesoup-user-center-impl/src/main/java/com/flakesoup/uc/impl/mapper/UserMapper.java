@@ -31,5 +31,6 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @param userDto 查询参数
 	 * @return list
 	 */
-	IPage<UserVo> getPageUsers(Page page, @Param("query") UserDto userDto);
+	IPage<User> getPageUsers(Page page, @Param("query") UserDto userDto);
+//	IPage<UserVo> getPageUsers(Page page, @Param("query") UserDto userDto);
 }

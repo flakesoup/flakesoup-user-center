@@ -29,11 +29,19 @@ public class UserCenterApiTest {
     @Test
     public void testCreateUser(){
         UserDto userDto = new UserDto();
-        userDto.setName("manson2");
+        userDto.setName("manson");
         userDto.setMobile("13466730687");
-        userDto.setPassword("333333");
+        userDto.setPassword("123456");
         R<UserVo> r = userCenterApi.createUser(userDto);
         System.out.println(r);
     }
 
+    @Test
+    public void testCheckUserPwd(){
+        UserDto userDto = new UserDto();
+        userDto.setId(28L);
+        userDto.setPassword("123456");
+        R<UserVo> r = userCenterApi.checkUserPassword(userDto);
+        System.out.println(r);
+    }
 }

@@ -27,7 +27,15 @@ public interface UserCenterApi {
 	 * @param userDto
 	 * @return 用户信息
 	 */
-	@PostMapping("/")
+	@PostMapping("/user")
 	R<UserVo> createUser(@RequestBody UserDto userDto);
 
+	/**
+	 * 用户登录
+	 *
+	 * @param userDto
+	 * @return 用户信息
+	 */
+	@PostMapping("/user/check/pwd")
+	R<UserVo> checkUserPassword(@RequestBody UserDto userDto);
 }

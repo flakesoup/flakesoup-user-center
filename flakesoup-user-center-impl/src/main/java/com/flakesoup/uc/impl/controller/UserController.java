@@ -2,12 +2,10 @@ package com.flakesoup.uc.impl.controller;
 
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
-import com.flakesoup.uc.api.entity.User;
 import com.flakesoup.uc.api.feign.UserCenterApi;
 import com.flakesoup.uc.api.vo.UserVo;
 import com.flakesoup.uc.impl.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,9 +23,7 @@ public class UserController implements UserCenterApi {
 	 */
 	@GetMapping("/{id}")
 	public R<UserVo> getUserById(@PathVariable Long id) {
-		User user = userService.getUserById(id);
-		UserVo userVo = new UserVo();
-		BeanUtils.copyProperties(user, userVo);
+		UserVo userVo = userService.getUserById(id);
 		return R.ok(userVo);
 	}
 
@@ -39,11 +35,19 @@ public class UserController implements UserCenterApi {
 	 */
 	@PostMapping({"", "/"})
 	public R<UserVo> createUser(@RequestBody UserDto userDto) {
-		User user = userService.createUser(userDto);
-		System.out.println(user);
-		UserVo userVo = new UserVo();
-		BeanUtils.copyProperties(user, userVo);
+		UserVo userVo = userService.createUser(userDto);
 		return R.ok(userVo);
 	}
 
+	/**
+	 * 用户登录
+	 *
+	 * @param userDto
+	 * @return 用户信息
+	 */
+	@GetMapping("/check/pwd")
+	public R<UserVo> checkUserPassword(@RequestBody UserDto userDto) {
+		UserVo userVo = userService.checkUserPassword(userDto);
+		return R.ok(userVo);
+	}
 }

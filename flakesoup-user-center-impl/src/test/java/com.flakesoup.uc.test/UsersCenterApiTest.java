@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,8 +34,8 @@ public class UsersCenterApiTest {
         page.setOrders(orders);
 //        page.setSize(5);
         UserDto userDto = new UserDto();
-        userDto.setName("manson");
-        userDto.setMobile("13466730687");
+//        userDto.setName("manson");
+//        userDto.setMobile("13466730687");
         R<IPage<UserVo>> r = usersCenterApi.getPageUsers(page, userDto);
         IPage<UserVo> data = r.getData();
         System.out.println(data.getCurrent());

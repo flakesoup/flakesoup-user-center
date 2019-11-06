@@ -7,8 +7,6 @@ import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.entity.User;
 import com.flakesoup.uc.api.vo.UserVo;
 
-import java.util.List;
-
 
 public interface UserService extends IService<User> {
 
@@ -20,15 +18,7 @@ public interface UserService extends IService<User> {
 	 * @return
 	 */
 	IPage<UserVo> getPageUsers(Page page, UserDto userDto);
-//
-//	/**
-//	 * 删除用户
-//	 *
-//	 * @param sysUser 用户
-//	 * @return boolean
-//	 */
-//	Boolean removeUserById(SysUser sysUser);
-//
+
 //	/**
 //	 * 更新当前用户基本信息
 //	 *
@@ -51,21 +41,21 @@ public interface UserService extends IService<User> {
 	 * @param id 用户ID
 	 * @return 用户信息
 	 */
-	User getUserById(Long id);
-//
-//	/**
-//	 * 查询上级部门的用户信息
-//	 *
-//	 * @param username 用户名
-//	 * @return R
-//	 */
-//	List<SysUser> listAncestorUsersByUsername(String username);
-//
+	UserVo getUserById(Long id);
+
 	/**
 	 * 创建用户
 	 *
 	 * @param userDto DTO 对象
-	 * @return success/fail
+	 * @return 用户信息
 	 */
-	User createUser(UserDto userDto);
+	UserVo createUser(UserDto userDto);
+
+	/**
+	 * 验证用户密码用户
+	 *
+	 * @param userDto DTO 对象
+	 * @return 用户信息
+	 */
+	UserVo checkUserPassword(UserDto userDto);
 }
