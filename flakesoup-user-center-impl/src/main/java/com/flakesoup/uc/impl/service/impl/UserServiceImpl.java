@@ -28,7 +28,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	}
 
 	@Override
-	public UserDto createUser(com.flakesoup.uc.api.dto.UserDto userDto) {
+	public UserDto createUser(UserDto userDto) {
 		User user = new User();
 		BeanUtils.copyProperties(userDto, user);
 		user.setPassword(ENCODER.encode(userDto.getPassword()));
@@ -37,13 +37,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	}
 
 	@Override
-	public IPage<UserDto> getPageUsers(Page page, com.flakesoup.uc.api.dto.UserDto userDto) {
+	public IPage<UserDto> getPageUsers(Page page, UserDto userDto) {
 		IPage<User> users = baseMapper.getPageUsers(page, userDto);
 		return convertListUserToVo(users);
 	}
 
 	@Override
-	public UserDto checkUserPassword(com.flakesoup.uc.api.dto.UserDto userDto) {
+	public UserDto checkUserPassword(UserDto userDto) {
 		User user = baseMapper.getUserById(userDto.getId());
 		if (user != null) {
 			boolean res = ENCODER.matches(userDto.getPassword(), user.getPassword());

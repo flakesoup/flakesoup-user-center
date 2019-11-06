@@ -16,7 +16,7 @@ public interface UserService extends IService<User> {
 	 * @param userDto 参数列表
 	 * @return
 	 */
-	IPage<UserDto> getPageUsers(Page page, com.flakesoup.uc.api.dto.UserDto userDto);
+	IPage<UserDto> getPageUsers(Page page, UserDto userDto);
 
 //	/**
 //	 * 更新当前用户基本信息
@@ -48,7 +48,7 @@ public interface UserService extends IService<User> {
 	 * @param userDto DTO 对象
 	 * @return 用户信息
 	 */
-	UserDto createUser(com.flakesoup.uc.api.dto.UserDto userDto);
+	UserDto createUser(UserDto userDto);
 
 	/**
 	 * 验证用户密码用户
@@ -56,5 +56,5 @@ public interface UserService extends IService<User> {
 	 * @param userDto DTO 对象
 	 * @return 用户信息
 	 */
-	UserDto checkUserPassword(com.flakesoup.uc.api.dto.UserDto userDto);
+	UserDto checkUserPassword(UserDto userDto);
 }

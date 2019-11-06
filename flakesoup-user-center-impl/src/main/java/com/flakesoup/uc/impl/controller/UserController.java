@@ -33,7 +33,7 @@ public class UserController implements UserCenterApi {
 	 * @return 用户信息
 	 */
 	@PostMapping({"", "/"})
-	public R<UserDto> createUser(@RequestBody com.flakesoup.uc.api.dto.UserDto userDto) {
+	public R<UserDto> createUser(@RequestBody UserDto userDto) {
 		UserDto userVo = userService.createUser(userDto);
 		return R.ok(userVo);
 	}
@@ -45,7 +45,7 @@ public class UserController implements UserCenterApi {
 	 * @return 用户信息
 	 */
 	@GetMapping("/check/pwd")
-	public R<UserDto> checkUserPassword(@RequestBody com.flakesoup.uc.api.dto.UserDto userDto) {
+	public R<UserDto> checkUserPassword(@RequestBody UserDto userDto) {
 		UserDto userVo = userService.checkUserPassword(userDto);
 		return R.ok(userVo);
 	}

@@ -27,7 +27,7 @@ public class UserCenterApiTest {
 
     @Test
     public void testCreateUser(){
-        com.flakesoup.uc.api.dto.UserDto userDto = new com.flakesoup.uc.api.dto.UserDto();
+        UserDto userDto = new UserDto();
         userDto.setName("manson");
         userDto.setMobile("13466730687");
         userDto.setPassword("123456");
@@ -37,7 +37,7 @@ public class UserCenterApiTest {
 
     @Test
     public void testCheckUserPwd(){
-        com.flakesoup.uc.api.dto.UserDto userDto = new com.flakesoup.uc.api.dto.UserDto();
+        UserDto userDto = new UserDto();
         userDto.setId(28L);
         userDto.setPassword("123456");
         R<UserDto> r = userCenterApi.checkUserPassword(userDto);

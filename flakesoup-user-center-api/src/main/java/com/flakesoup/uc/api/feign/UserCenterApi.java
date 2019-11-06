@@ -27,7 +27,7 @@ public interface UserCenterApi {
 	 * @return 用户信息
 	 */
 	@PostMapping("/user")
-	R<UserDto> createUser(@RequestBody com.flakesoup.uc.api.dto.UserDto userDto);
+	R<UserDto> createUser(@RequestBody UserDto userDto);
 
 	/**
 	 * 用户登录
@@ -36,5 +36,5 @@ public interface UserCenterApi {
 	 * @return 用户信息
 	 */
 	@PostMapping("/user/check/pwd")
-	R<UserDto> checkUserPassword(@RequestBody com.flakesoup.uc.api.dto.UserDto userDto);
+	R<UserDto> checkUserPassword(@RequestBody UserDto userDto);
 }

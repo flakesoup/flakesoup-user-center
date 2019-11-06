@@ -26,7 +26,7 @@ public class UsersController implements UsersCenterApi {
 	 * @return 用户集合
 	 */
 	@GetMapping("/list")
-	public R<IPage<UserDto>> getPageUsers(Page page, com.flakesoup.uc.api.dto.UserDto userDto) {
+	public R<IPage<UserDto>> getPageUsers(Page page, UserDto userDto) {
 		return R.ok(userService.getPageUsers(page, userDto));
 	}
 

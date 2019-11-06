@@ -19,6 +19,6 @@ public interface UsersCenterApi {
 	 * @return 用户集合
 	 */
 	@GetMapping("/users/list")
-	R<IPage<UserDto>> getPageUsers(Page page, com.flakesoup.uc.api.dto.UserDto userDto);
+	R<IPage<UserDto>> getPageUsers(Page page, UserDto userDto);
 
 }
