@@ -27,12 +27,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	}
 
 	@Override
-	public Boolean createUser(UserDto userDto) {
+	public User createUser(UserDto userDto) {
 		User user = new User();
 		BeanUtils.copyProperties(userDto, user);
 		user.setPassword(ENCODER.encode(userDto.getPassword()));
 		baseMapper.insert(user);
-		return true;
+		return user;
 	}
 
 	@Override

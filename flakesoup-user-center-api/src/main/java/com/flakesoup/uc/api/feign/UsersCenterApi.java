@@ -1,20 +1,23 @@
 package com.flakesoup.uc.api.feign;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 @FeignClient(contextId = "usersCenterApi", value = "flakesoup-user-center")
 public interface UsersCenterApi {
+
 	/**
-	 * 通过id查询用户
+	 * 分页查询用户
 	 *
-	 * @param id 用户id
-	 * @return R
+	 * @param page    参数集
+	 * @param userDto 查询参数列表
+	 * @return 用户集合
 	 */
-	@GetMapping("/user/{id}")
-	R<UserDto> getUserById(@PathVariable("id") Long id);
+	@GetMapping("/users/list")
+	R getPageUsers(Page page, UserDto userDto);
+
 }

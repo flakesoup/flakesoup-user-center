@@ -3,6 +3,7 @@ package com.flakesoup.uc.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
+import com.flakesoup.uc.api.feign.UsersCenterApi;
 import com.flakesoup.uc.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/users")
-public class UsersController {
+public class UsersController implements UsersCenterApi {
 	private final UserService userService;
 
 	/**
@@ -23,7 +24,7 @@ public class UsersController {
 	 * @param userDto 查询参数列表
 	 * @return 用户集合
 	 */
-	@GetMapping("/")
+	@GetMapping("/list")
 	public R getPageUsers(Page page, UserDto userDto) {
 		return R.ok(userService.getPageUsers(page, userDto));
 	}

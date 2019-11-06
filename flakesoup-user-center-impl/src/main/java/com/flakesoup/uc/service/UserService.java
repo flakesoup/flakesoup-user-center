@@ -9,7 +9,6 @@ import com.flakesoup.uc.api.entity.User;
 
 public interface UserService extends IService<User> {
 
-
 	/**
 	 * 分页查询用户信息（含有角色信息）
 	 *
@@ -65,5 +64,5 @@ public interface UserService extends IService<User> {
 	 * @param userDto DTO 对象
 	 * @return success/fail
 	 */
-	Boolean createUser(UserDto userDto);
+	User createUser(UserDto userDto);
 }

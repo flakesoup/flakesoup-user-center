@@ -1,11 +1,13 @@
 package com.flakesoup.uc.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
+import com.flakesoup.uc.api.entity.User;
 import com.flakesoup.uc.api.feign.UserCenterApi;
+import com.flakesoup.uc.api.vo.UserVo;
 import com.flakesoup.uc.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -22,8 +24,11 @@ public class UserController implements UserCenterApi {
 	 * @return 用户信息
 	 */
 	@GetMapping("/{id}")
-	public R getUserById(@PathVariable Long id) {
-		return R.ok(userService.getUserById(id));
+	public R<UserVo> getUserById(@PathVariable Long id) {
+		User user = userService.getUserById(id);
+		UserVo userVo = new UserVo();
+		BeanUtils.copyProperties(user, userVo);
+		return R.ok(userVo);
 	}
 
 	/**
@@ -32,21 +37,13 @@ public class UserController implements UserCenterApi {
 	 * @param userDto
 	 * @return 用户信息
 	 */
-	@PostMapping("/")
-	public R createUser(@RequestBody UserDto userDto) {
-		return R.ok(userService.createUser(userDto));
-	}
-
-	/**
-	 * 分页查询用户
-	 *
-	 * @param page    参数集
-	 * @param userDto 查询参数列表
-	 * @return 用户集合
-	 */
-	@GetMapping("/page")
-	public R getUserPage(Page page, UserDto userDto) {
-		return R.ok(userService.getPageUsers(page, userDto));
+	@PostMapping({"", "/"})
+	public R<UserVo> createUser(@RequestBody UserDto userDto) {
+		User user = userService.createUser(userDto);
+		System.out.println(user);
+		UserVo userVo = new UserVo();
+		BeanUtils.copyProperties(user, userVo);
+		return R.ok(userVo);
 	}
 
 }
