@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class UserDto implements Serializable {
+public class UserDistDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

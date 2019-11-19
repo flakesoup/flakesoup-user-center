@@ -5,6 +5,9 @@ import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.UserCenterApi;
 import com.flakesoup.uc.impl.FlakeSoupUserCenterApplication;
+import com.flakesoup.uc.impl.service.UserDistService;
+import com.flakesoup.uc.impl.service.UserProfileDistService;
+import com.flakesoup.uc.impl.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,12 @@ public class UserCenterApiTest {
 
     @Autowired
     private UserCenterApi userCenterApi;
+
+    @Autowired
+    private UserDistService userDistService;
+
+    @Autowired
+    private UserProfileDistService userProfileDistService;
 
     @Test
     public void testGetUserById(){
@@ -42,5 +51,20 @@ public class UserCenterApiTest {
         userDto.setPassword("123456");
         R<UserDto> r = userCenterApi.checkUserPassword(userDto);
         System.out.println(r);
+    }
+
+    @Test
+    public void testCreateDistUser(){
+        UserDto userDto = new UserDto();
+        userDto.setName("manson");
+        userDto.setMobile("13466730687");
+        userDto.setPassword("123456");
+        UserDto r = userDistService.createDistUser(userDto);
+        System.out.println(r);
+    }
+
+    @Test
+    public void testCreateDistUserProfile(){
+        userProfileDistService.createDistUserProfile(403578695215742977L);
     }
 }

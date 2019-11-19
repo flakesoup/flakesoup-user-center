@@ -20,6 +20,54 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+  # 分库分表
+  shardingsphere:
+    datasource:
+      names: flakesoup-uc-$->{0..1}
+      flakesoup-uc-0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: ""
+        jdbc-url: jdbc:mysql://localhost:3306/flakesoup_uc_0?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+      flakesoup-uc-1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: ""
+        jdbc-url: jdbc:mysql://localhost:3306/flakesoup_uc_1?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: id
+          algorithm-expression: flakesoup-uc-$->{id % 2}
+      tables:
+        t_user:
+          actual-data-nodes: flakesoup-uc-$->{0..1}.t_user_$->{0..2}
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: t_user_$->{id % 3}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+        t_user_profile:
+          actual-data-nodes: flakesoup-uc-$->{0..1}.t_user_profile_$->{0..2}
+          table-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: t_user_profile_$->{user_id % 3}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+      binding-tables: t_user, t_user_profile
+    props:
+      sql:
+        show: true
+    orchestration:
+      name: flakesoup-uc-dist
+
+
 # 注册中心配置
 eureka:
   auth:
