@@ -19,7 +19,6 @@
 		<!-- 4.0.0-RC3官方还未发布，本地源码编译 -->
 		<sharding-sphere.version>4.0.0-RC3</sharding-sphere.version>
 		<mysql-connector-java.version>5.1.48</mysql-connector-java.version>
-		<!--<mysql-connector-java.version>8.0.18</mysql-connector-java.version>-->
 	</properties>
 
 	<dependencies>
@@ -35,17 +34,31 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+
+		<!--mysql数据库
+			降低版本，6+,8+版本会引起shardingJDBC错误
+				- java.lang.NumberFormatException: For input string: "YES"
+			最新版本还未修复
+		-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector-java.version}</version>
+		</dependency>
+
 		<!--mybatis-->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>${mybatis-plus.version}</version>
 		</dependency>
-		<!--数据库-->
-		<!--<dependency>-->
-			<!--<groupId>mysql</groupId>-->
-			<!--<artifactId>mysql-connector-java</artifactId>-->
-		<!--</dependency>-->
+		<!-- 类型转化 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-typehandlers-jsr310</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
 		<!--web 模块-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,22 +95,7 @@
 			<artifactId>sharding-jdbc-spring-namespace</artifactId>
 			<version>${sharding-sphere.version}</version>
 		</dependency>
-		<!--
-			降低版本，8+版本会引起shardingJDBC错误
-				- java.lang.NumberFormatException: For input string: "YES"
-			最新版本还未修复
-		-->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-connector-java.version}</version>
-		</dependency>
-		<!-- 解决LocalDateTime与mysql日期类型转化 -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-typehandlers-jsr310</artifactId>
-			<version>1.0.2</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>

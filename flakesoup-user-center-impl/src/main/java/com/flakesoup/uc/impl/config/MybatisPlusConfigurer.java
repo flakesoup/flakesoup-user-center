@@ -22,13 +22,11 @@ public class MybatisPlusConfigurer {
 	 */
 	@Bean
 	public PaginationInterceptor paginationInterceptor() {
-//		return new PaginationInterceptor();
 		PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
 		List<ISqlParser> sqlParserList = new ArrayList<>();
 		sqlParserList.add(new BlockAttackSqlParser());
-
 		paginationInterceptor.setSqlParserList(sqlParserList);
-		return new PaginationInterceptor();
+		return paginationInterceptor;
 	}
 
 	/**
