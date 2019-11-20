@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flakesoup.uc.impl.mapper.UserShardingMapper">
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.flakesoup.uc.impl.entity.UserSharding">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="password" jdbcType="VARCHAR" property="password"/>
+		<result column="status" jdbcType="INTEGER" property="status"/>
+		<result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+	</resultMap>
+
+	<!-- 聚合user&user_profile查询映射结果 -->
+	<resultMap id="extResultMap" type="com.flakesoup.uc.impl.entity.UserAggregate">
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="password" jdbcType="VARCHAR" property="password"/>
+		<result column="status" jdbcType="INTEGER" property="status"/>
+		<result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+		<result column="user_profile_id" jdbcType="BIGINT" property="userProfileId"/>
+		<result column="age" jdbcType="TINYINT" property="age"/>
+		<result column="gender" jdbcType="TINYINT" property="gender"/>
+		<result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+		<result column="address" jdbcType="VARCHAR" property="address"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+	</resultMap>
+
+	<select id="getUserByIdWithProfile" resultMap="extResultMap">
+		SELECT
+		`t_user`.id,
+		`t_user`.name,
+		`t_user`.password,
+		`t_user`.status,
+		`t_user`.mobile,
+		`t_user`.create_time,
+		`t_user`.update_time,
+		`t_user_profile`.id AS user_profile_id,
+		`t_user_profile`.age,
+		`t_user_profile`.gender,
+		`t_user_profile`.nickname,
+		`t_user_profile`.address,
+		`t_user_profile`.email
+		FROM
+		`t_user`
+		LEFT JOIN `t_user_profile` ON `t_user_profile`.`user_id` = `t_user`.`id`
+		WHERE
+		`t_user`.id = #{id} AND `t_user_profile`.`user_id` = #{id}
+	</select>
+
+	<select id="getUserById" resultMap="baseResultMap">
+		SELECT
+		`t_user`.id,
+		`t_user`.name,
+		`t_user`.password,
+		`t_user`.status,
+		`t_user`.mobile,
+		`t_user`.create_time,
+		`t_user`.update_time
+		FROM
+		`t_user`
+		WHERE
+		`t_user`.id = #{id}
+	</select>
+
+	<select id="getPageUsers" resultMap="baseResultMap">
+		SELECT
+		`t_user`.id,
+		`t_user`.name,
+		`t_user`.password,
+		`t_user`.status,
+		`t_user`.mobile,
+		`t_user`.create_time,
+		`t_user`.update_time
+		FROM
+		`t_user`
+		<where>
+			<trim prefixOverrides="and">
+				<if test="query.name != null and query.name != ''">
+					and `t_user`.name LIKE CONCAT('%',#{query.name},'%')
+				</if>
+				<if test="query.mobile != null and query.mobile != ''">
+					and `t_user`.mobile LIKE CONCAT('%',#{query.mobile},'%')
+				</if>
+				<!--<if test="query.create_time_start != null and query.create_time_start != ''">-->
+					<!--and `user`.create_time >= #{query.create_time_start}-->
+				<!--</if>-->
+				<!--<if test="query.create_time_end != null and query.create_time_end != ''">-->
+					<!--and #{query.create_time_end} >= `user`.create_time-->
+				<!--</if>-->
+			</trim>
+		</where>
+		ORDER BY `t_user`.create_time DESC
+	</select>
+</mapper>

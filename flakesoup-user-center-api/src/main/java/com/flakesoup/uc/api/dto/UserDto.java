@@ -3,7 +3,7 @@ package com.flakesoup.uc.api.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Data
@@ -38,10 +38,42 @@ public class UserDto implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	private LocalDateTime createTime;
+	private Date createTime;
 
 	/**
 	 * 修改时间
 	 */
-	private LocalDateTime updateTime;
+	private Date updateTime;
+
+	/* ==========user profile============ */
+	/**
+	 * profile id
+	 */
+	private Long userProfileId;
+
+	/**
+	 * 年龄
+	 */
+	private Integer age;
+
+	/**
+	 * 性别
+	 */
+	private Integer gender;
+
+	/**
+	 * 用户昵称
+	 */
+	private String nickname;
+
+	/**
+	 * 用户地址
+	 */
+	private String address;
+
+	/**
+	 * 用户邮箱
+	 */
+	private String email;
+
 }

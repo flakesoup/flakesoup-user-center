@@ -1,13 +1,14 @@
 package com.flakesoup.uc.test;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.flakesoup.common.core.util.R;
 import com.flakesoup.uc.api.dto.UserDto;
 import com.flakesoup.uc.api.UserCenterApi;
 import com.flakesoup.uc.impl.FlakeSoupUserCenterApplication;
-import com.flakesoup.uc.impl.service.UserDistService;
+import com.flakesoup.uc.impl.service.UserShardingService;
 import com.flakesoup.uc.impl.service.UserProfileDistService;
-import com.flakesoup.uc.impl.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserCenterApiTest {
     private UserCenterApi userCenterApi;
 
     @Autowired
-    private UserDistService userDistService;
+    private UserShardingService userShardingService;
 
     @Autowired
     private UserProfileDistService userProfileDistService;
@@ -53,13 +54,36 @@ public class UserCenterApiTest {
         System.out.println(r);
     }
 
+    /* sharding */
+
+    @Test
+    public void testgetUserShardingById(){
+        UserDto r = userShardingService.getUserById(403578695215742977L);
+        System.out.println(r);
+    }
+
+    @Test
+    public void testgetUserShardingByIdWithProfile(){
+        UserDto r = userShardingService.getUserByIdWithProfile(403578695215742977L);
+        System.out.println(r);
+    }
+
+    @Test
+    public void testgetPageUsersSharding(){
+        Page page = new Page(0L, 10L);
+        UserDto userDto = new UserDto();
+        userDto.setMobile("13466730688");
+        IPage<UserDto> r = userShardingService.getPageUsers(page, userDto);
+        System.out.println(r.getRecords());
+    }
+
     @Test
     public void testCreateDistUser(){
         UserDto userDto = new UserDto();
         userDto.setName("manson");
         userDto.setMobile("13466730687");
         userDto.setPassword("123456");
-        UserDto r = userDistService.createDistUser(userDto);
+        UserDto r = userShardingService.createUser(userDto);
         System.out.println(r);
     }
 

@@ -6,16 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
- * 用户表
+ * 用户信息表
  * </p>
  */
 @Data
-@TableName("t_user")
-public class UserDist implements Serializable {
+@TableName("t_user_profile")
+public class UserProfileSharding implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,32 +25,42 @@ public class UserDist implements Serializable {
 	private Long id;
 
 	/**
-	 * 用户名
+	 * 用户id
 	 */
-	private String name;
+	private Long userId;
 
 	/**
-	 * 手机
+	 * 年龄
 	 */
-	private String mobile;
+	private Integer age;
 
 	/**
-	 * 密码
+	 * 性别
 	 */
-	private String password;
+	private Integer gender;
 
 	/**
-	 * 状态
+	 * 用户昵称
 	 */
-	private Integer status;
+	private String nickname;
+
+	/**
+	 * 用户地址
+	 */
+	private String address;
+
+	/**
+	 * 用户邮箱
+	 */
+	private String email;
 
 	/**
 	 * 创建时间
 	 */
-	private LocalDateTime createTime;
+	private Date createTime;
 
 	/**
 	 * 修改时间
 	 */
-	private LocalDateTime updateTime;
+	private Date updateTime;
 }
